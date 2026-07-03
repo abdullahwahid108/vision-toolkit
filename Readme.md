@@ -4,6 +4,12 @@ A full-stack image processing web app built with **FastAPI + OpenCV** on the bac
 
 ![status](https://img.shields.io/badge/status-complete-brightgreen)
 
+## Demo
+
+[![Watch the demo](https://img.youtube.com/vi/taQwe7jsNWY/maxresdefault.jpg)](https://youtu.be/taQwe7jsNWY)
+
+*Click the thumbnail to watch a full walkthrough of all features.*
+
 ## Features
 
 **Core**
