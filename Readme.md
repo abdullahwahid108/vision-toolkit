@@ -33,7 +33,7 @@ A full-stack image processing web app built with **FastAPI + OpenCV** on the bac
 
 ## Tech Stack
 
-- **Backend:** Python, FastAPI, OpenCV (`opencv-python`), NumPy, Matplotlib (histograms)
+- **Backend:** Python, FastAPI, OpenCV (`opencv-python-headless`), NumPy, Matplotlib (histograms)
 - **Frontend:** HTML5, CSS3, vanilla JavaScript (Canvas API for drawing/cropping, MediaDevices API for webcam)
 - **Server:** Uvicorn (ASGI)
 
@@ -100,6 +100,7 @@ Interactive API docs available at `/docs` when the server is running.
 
 ## Notes
 
+- Uses `opencv-python-headless` rather than `opencv-python`, since this app never displays images in a native GUI window — only processes and returns them over HTTP.
 - Webcam capture requires `localhost` or HTTPS — browsers block camera access on plain HTTP for any other host.
 - Uploads are capped at 15MB by default (adjustable in `main.py`).
 
