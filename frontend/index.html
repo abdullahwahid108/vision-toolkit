@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vision Toolkit</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Vision Toolkit</h1>
+
+<div id="loadingOverlay" class="loading-overlay">
+  <div class="spinner"></div>
+  <p>Processing...</p>
+</div>
+
+  <div class="app-layout">
+
+<!-- LEFT SIDEBAR -->
+    <div class="sidebar">
+      <div class="panel">
+        <h3>Upload & History</h3>
+        <input type="file" id="imageInput" accept="image/*" />
+        <div class="btn-row">
+          <button id="undoBtn" disabled>Undo</button>
+          <button id="resetBtn">Reset</button>
+        </div>
+        <button id="downloadBtn">💾 Save Image</button>
+      </div>
+
+      <div class="panel">
+        <h3>Webcam Capture</h3>
+        <video id="webcamVideo" style="width: 100%; display: none; border-radius: 6px;" autoplay></video>
+        <canvas id="webcamCanvas" style="display: none;"></canvas>
+      <div class="btn-row" style="margin-top: 8px;">
+        <button id="startWebcamBtn">Start Camera</button>
+        <button id="captureBtn" style="display: none;">Capture</button>
+      </div>
+      <button id="stopWebcamBtn" style="display: none;">Stop Camera</button>
+    </div>
+
+      <div class="panel">
+        <h3>Image Info</h3>
+        <button id="infoBtn">Show Image Info</button>
+        <div id="imageInfoBox"></div>
+      </div>
+
+      <div class="panel">
+        <h3>Basic</h3>
+        <button id="grayscaleBtn">Convert to Grayscale</button>
+      </div>
+      <div class="panel">
+        <h3>Histogram</h3>
+        <button id="histogramBtn">Show Histogram</button>
+        <img id="histogramImg" style="width: 100%; margin-top: 10px; display: none;" />
+      </div>
+      <div class="panel">
+        <h3>Rotate & Resize</h3>
+        <label>Rotate Angle: <span id="rotateVal">0</span>°</label>
+        <input type="range" id="rotateAngle" min="-180" max="180" value="0" />
+        <button id="rotateBtn">Rotate</button>
+
+        <hr/>
+
+        <label>Resize: <span id="resizeVal">100</span>%</label>
+        <input type="range" id="resizeScale" min="10" max="200" value="100" />
+        <button id="resizeBtn">Resize</button>
+      </div>
+
+      <div class="panel">
+        <h3>Edge Detection (Canny)</h3>
+        <label>Threshold 1: <span id="t1Val">100</span></label>
+        <input type="range" id="threshold1" min="0" max="300" value="100" />
+        <label>Threshold 2: <span id="t2Val">200</span></label>
+        <input type="range" id="threshold2" min="0" max="300" value="200" />
+        <button id="edgeBtn">Detect Edges</button>
+      </div>
+
+      <div class="panel">
+        <h3>Blur Filters</h3>
+        <label>Kernel Size: <span id="kernelVal">5</span></label>
+        <input type="range" id="kernelSize" min="1" max="31" step="2" value="5" />
+        <div class="btn-row">
+          <button id="gaussianBtn">Gaussian</button>
+          <button id="medianBtn">Median</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER: IMAGES -->
+    <div class="center-panel">
+      <div class="preview-container">
+        <div>
+          <h3>Original</h3>
+          <img id="originalPreview" width="380" />
+        </div>
+        <div>
+          <h3>Processed (click/drag to draw)</h3>
+          <div style="position: relative; width: 380px;">
+            <img id="processedPreview" width="380" />
+            <canvas id="drawCanvas" width="380" height="380"
+              style="position: absolute; top: 0; left: 0; cursor: crosshair;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="sidebar">
+      <div class="panel">
+        <h3>Thresholding</h3>
+        <label>Binary Threshold: <span id="threshVal">127</span></label>
+        <input type="range" id="threshValue" min="0" max="255" value="127" />
+        <button id="binaryThreshBtn">Apply Binary</button>
+
+        <hr/>
+
+        <label>Adaptive Block Size: <span id="blockVal">11</span></label>
+        <input type="range" id="blockSize" min="3" max="51" step="2" value="11" />
+        <label>Adaptive C: <span id="cVal">2</span></label>
+        <input type="range" id="cValue" min="-10" max="10" value="2" />
+        <button id="adaptiveThreshBtn">Apply Adaptive</button>
+      </div>
+
+      <div class="panel">
+        <h3>Brightness / Contrast</h3>
+        <label>Brightness: <span id="brightVal">0</span></label>
+        <input type="range" id="brightness" min="-100" max="100" value="0" />
+        <label>Contrast: <span id="contrastVal">0</span></label>
+        <input type="range" id="contrast" min="-100" max="100" value="0" />
+        <button id="adjustBtn">Apply</button>
+      </div>
+
+      <div class="panel">
+        <h3>Crop</h3>
+        <label>
+        <input type="checkbox" id="cropModeToggle" />
+        Enable crop mode (click & drag on image)
+        </label>
+        <button id="applyCropBtn" style="margin-top: 8px;">Apply Crop</button>
+      </div>
+
+      <div class="panel">
+        <h3>Drawing Tools</h3>
+        <label>Shape:
+          <select id="shapeType">
+            <option value="rectangle">Rectangle</option>
+            <option value="circle">Circle</option>
+            <option value="line">Line</option>
+            <option value="text">Text</option>
+          </select>
+        </label>
+        <label>Color: <input type="color" id="drawColor" value="#00ff00" /></label>
+        <label>Thickness: <input type="number" id="drawThickness" value="2" min="1" max="20" /></label>
+
+        <div id="textInputWrapper" style="display:none;">
+          <label>Text: <input type="text" id="drawText" value="Hello" /></label>
+        </div>
+
+        <p class="hint">Rectangle/Circle/Line: click & drag.<br/>Text: click once.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+/* ============================================
+   Vision Toolkit — Clean Professional Theme
+   ============================================ */
+
+:root {
+  --primary: #6d8bff;
+  --primary-dark: #5470e0;
+  --primary-light: #1e2a4a;
+  --accent: #2dd4b8;
+  --bg: #0d1526;
+  --panel-bg: #131c33;
+  --border: #253352;
+  --text: #e6e9f2;
+  --text-muted: #93a0c2;
+  --danger: #f0555a;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1 {
+  text-align: center;
+  margin: 0 0 28px 0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+h1::before {
+  content: "🎛️ ";
+}
+
+h3 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--primary-dark);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ============================================
+   Layout
+   ============================================ */
+.app-layout {
+  display: grid;
+  grid-template-columns: 270px 1fr 270px;
+  gap: 20px;
+  align-items: start;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.15s ease;
+}
+
+.panel:hover {
+  box-shadow: 0 2px 6px rgba(20, 24, 40, 0.08), 0 8px 20px rgba(20, 24, 40, 0.06);
+}
+
+.center-panel {
+  position: sticky;
+  top: 24px;
+}
+
+.preview-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.preview-container > div {
+  text-align: center;
+}
+
+.preview-container h3 {
+  border: none;
+  padding-bottom: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* ============================================
+   Form elements
+   ============================================ */
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+label:first-child {
+  margin-top: 0;
+}
+
+input[type="file"] {
+  width: 100%;
+  font-size: 13px;
+  padding: 8px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: var(--primary-light);
+  cursor: pointer;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--border);
+  appearance: none;
+  outline: none;
+  margin: 6px 0 10px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  background: #0d1526;
+  color: var(--text);
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+input[type="color"] {
+  width: 100%;
+  height: 34px;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  background: #0d1526;
+  color: var(--text);
+  cursor: pointer;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 14px 0;
+}
+
+/* Checkbox row (crop mode) */
+input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--primary);
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+button:hover {
+  background: var(--primary-dark);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  background: #cbd0dc;
+  cursor: not-allowed;
+}
+
+.btn-row {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-row button {
+  flex: 1;
+}
+
+/* Distinct colors for specific actions */
+#resetBtn {
+  background: var(--danger);
+}
+#resetBtn:hover {
+  background: #dc2626;
+}
+
+#downloadBtn {
+  background: var(--accent);
+}
+#downloadBtn:hover {
+  background: #1aa88c;
+}
+
+#stopWebcamBtn {
+  background: var(--danger);
+}
+#stopWebcamBtn:hover {
+  background: #dc2626;
+}
+
+/* ============================================
+   Image previews
+   ============================================ */
+#originalPreview,
+#processedPreview {
+  max-width: 380px;
+  max-height: 380px;
+  width: auto;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #0d1526;
+}
+
+#webcamVideo {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+#histogramImg {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* ============================================
+   Info box
+   ============================================ */
+#imageInfoBox {
+  margin-top: 10px;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  background: var(--primary-light);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   Loading overlay
+   ============================================ */
+.loading-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 21, 38, 0.72);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.loading-overlay p {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   Responsive fallback
+   ============================================ */
+@media (max-width: 1100px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+  .center-panel {
+    position: static;
+    order: -1;
+  }
+}

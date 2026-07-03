@@ -1,0 +1,17 @@
+# Virtual environment
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Temp/uploaded images (if you save any locally)
+backend/temp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
